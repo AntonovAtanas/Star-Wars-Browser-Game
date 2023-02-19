@@ -1,5 +1,5 @@
 body {
-    background-color: lightcyan;
+    background-color: #000000;
     font-family: 'Courier New', Courier, monospace;
     font-size: 48px;
 }
@@ -9,9 +9,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color:white
 }
 
 .startScreen:hover {
     cursor: pointer;
-    color: white;
+    color: #FFE81F;
 }
+
+.hidden {
+    display:none;
+};
