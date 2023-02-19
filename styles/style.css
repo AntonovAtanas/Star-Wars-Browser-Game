@@ -1,3 +1,10 @@
-.h1Test {
-    color: red;
+body{
+    background-color: lightcyan;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 48px;
+}
+
+.startScreen{
+    text-align: center;
+    margin-top: 20%;
 }
