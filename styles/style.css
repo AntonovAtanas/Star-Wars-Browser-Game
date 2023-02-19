@@ -1,10 +1,17 @@
-body{
+body {
     background-color: lightcyan;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 48px;
 }
 
-.startScreen{
-    text-align: center;
-    margin-top: 20%;
+.startScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.startScreen:hover {
+    cursor: pointer;
+    color: white;
 }
