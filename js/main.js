@@ -1,14 +1,15 @@
-const startBtn = document.querySelector('.start-screen')
-startBtn.addEventListener('click', start);
+let state = initialState();
 
-const gameScreen = document.querySelector('.game-screen');
+let game = initGameObjects()
 
-function start(){
-    startBtn.classList.add('hidden');
+game.startBtn.addEventListener('click', start);
+
+function start() {
+    game.startBtn.classList.add('hidden');
+    game.gameScreen.classList.remove('hidden')
 
     let milleniumFalcon = document.createElement('div');
     milleniumFalcon.classList.add('millenium-falcon');
-    gameScreen.appendChild(milleniumFalcon);
+    game.gameScreen.appendChild(milleniumFalcon);
 
 }
-
