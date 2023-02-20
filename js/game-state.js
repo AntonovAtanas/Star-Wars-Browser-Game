@@ -3,8 +3,14 @@ function initialState () {
         milleniumFalcon: {
             height: 80,
             width: 80,
-            startTop: Math.random()*600,
-            startLeft: 0
+            positionTop: Math.random()*600,
+            positionLeft: 0
+        },
+        keys: {
+            KeyUp: false,
+            KeyDown: false,
+            KeyLeft: false,
+            KeyRight: false
         }
     }
 

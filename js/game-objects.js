@@ -11,8 +11,8 @@ function initGameObjects() {
 
            milleniumFalcon.style.height = + initialState.height + 'px';
            milleniumFalcon.style.width = initialState.width + 'px';
-           milleniumFalcon.style.top = initialState.startTop + 'px';
-           milleniumFalcon.style.left = initialState.startLeft + 'px';
+           milleniumFalcon.style.top = initialState.positionTop + 'px';
+           milleniumFalcon.style.left = initialState.positionLeft + 'px';
            
            this.milleniumFalcon = milleniumFalcon;
            game.gameScreen.appendChild(milleniumFalcon);
