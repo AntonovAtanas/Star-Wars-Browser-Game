@@ -1,16 +1,20 @@
 function initialState () {
+    let startPositionTop = Math.random()*600
+
     const state = {
         milleniumFalcon: {
             height: 80,
             width: 80,
-            positionTop: Math.random()*600,
-            positionLeft: 0
+            positionTop: startPositionTop,
+            positionLeft: 0,
+            positionRight: 0,
+            positionDown: 0,
         },
         keys: {
-            KeyUp: false,
-            KeyDown: false,
-            KeyLeft: false,
-            KeyRight: false
+            ArrowUp: false,
+            ArrowDown: false,
+            ArrowLeft: false,
+            ArrowRigth: false
         }
     }
 

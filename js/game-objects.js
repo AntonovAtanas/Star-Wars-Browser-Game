@@ -16,6 +16,7 @@ function initGameObjects() {
            
            this.milleniumFalcon = milleniumFalcon;
            game.gameScreen.appendChild(milleniumFalcon);
+           return milleniumFalcon;
         },
 
     }

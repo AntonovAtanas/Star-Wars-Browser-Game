@@ -4,21 +4,32 @@ let game = initGameObjects();
 // Add event listener on the start button
 game.startBtn.addEventListener('click', startGame);
 
-// Add event listener on keydown
+// Array of available keys
+
+let availableKeys = [
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight'
+]
+
+// Add event listener on pressed key
 
 document.addEventListener('keydown', (event) => {
-    state.keys[event.code] = true;
-    console.log(event.code)
+    if (availableKeys.includes(event.code)) {
+        state.keys[event.code] = true;
+    }
 })
 
 document.addEventListener('keyup', (event) => {
-    state.keys[event.code] = false;
-    console.log(event.code)
+    if (availableKeys.includes(event.code)) {
+        state.keys[event.code] = false;
+    }
 })
 
 function startGame() {
     game.startBtn.classList.add('hidden');
-    game.gameScreen.classList.remove('hidden')
+    game.gameScreen.classList.remove('hidden');
 
     // Starting the game
     start(state, game);
