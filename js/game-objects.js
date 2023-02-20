@@ -4,6 +4,14 @@ function initGameObjects() {
 
     return {
         startBtn,
-        gameScreen
+        gameScreen,
+        createMilleniumFalcon (initialState) {
+           let milleniumFalcon = document.createElement('div');
+           milleniumFalcon.classList.add('millenium-falcon');
+           milleniumFalcon.style.height = + initialState.milleniumFalcon.height + 'px';
+           milleniumFalcon.style.width = initialState.milleniumFalcon.width + 'px';
+           game.gameScreen.appendChild(milleniumFalcon);
+        },
+
     }
 }

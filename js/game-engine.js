@@ -1,4 +1,5 @@
 function start(state, game){
+    game.createMilleniumFalcon(initialState());
     window.requestAnimationFrame(gameLoop.bind(null, state,game));
 }
 

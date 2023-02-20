@@ -29,6 +29,5 @@ body {
 
 .millenium-falcon {
     background-image: url("../img/falconW.png");
-    height: 177px;
-    width: 177px;
+    background-size: cover;
 }
