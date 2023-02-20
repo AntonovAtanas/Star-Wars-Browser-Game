@@ -30,4 +30,5 @@ body {
 .millenium-falcon {
     background-image: url("../img/falconW.png");
     background-size: cover;
+    position: absolute;
 }
