@@ -9,6 +9,8 @@ function initialState () {
             positionLeft: 0,
             positionRight: 0,
             positionDown: 0,
+            speed: 5,
+            
         },
         keys: {
             ArrowUp: false,
@@ -17,6 +19,5 @@ function initialState () {
             ArrowRigth: false
         }
     }
-
     return state;
 }
