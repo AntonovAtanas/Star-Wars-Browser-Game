@@ -23,6 +23,10 @@ function initialState (game) {
             spawnTimestamp: 0,
             spawnInterval: 5000
         },
+        falconLaser: {
+            height: 13,
+            width: 13,
+        },
         keys: {
             ArrowUp: false,
             ArrowDown: false,

@@ -11,7 +11,8 @@ let availableKeys = [
     'ArrowUp',
     'ArrowDown',
     'ArrowLeft',
-    'ArrowRight'
+    'ArrowRight',
+    'Space'
 ]
 
 // Add event listener on pressed key

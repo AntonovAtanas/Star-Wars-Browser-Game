@@ -38,3 +38,9 @@ body {
     background-size: cover;
     position: absolute;
 }
+
+.falcon-laser {
+    background-image: url("../img/green\ laser.png");
+    background-size: cover;
+    position: absolute;
+}

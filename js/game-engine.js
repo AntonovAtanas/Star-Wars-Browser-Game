@@ -42,4 +42,8 @@ function falconMovement(){
     if (state.keys['ArrowLeft'] && state.milleniumFalcon.positionLeft > -7) {
         state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
     };
+
+    if (state.keys['Space']){
+        game.createFalconLaser(state.falconLaser);
+    }
 }
