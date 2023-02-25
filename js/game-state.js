@@ -1,6 +1,5 @@
 function initialState (game) {
     let startPositionTop = Math.random()*600
-    let tieStartPositionTop = Math.random()*600
 
     const state = {
         milleniumFalcon: {
@@ -16,7 +15,7 @@ function initialState (game) {
         tieFighter: {
             height: 64,
             width: 64,
-            positionTop: tieStartPositionTop,
+            positionTop: 0,
             positionLeft: 0,
             positionRight: 0,
             positionDown: 0,

@@ -25,7 +25,7 @@ function initGameObjects() {
             tieFighter.style.height = initialState.height + 'px';
             tieFighter.style.width = initialState.width + 'px';
 
-            tieFighter.style.top = initialState.positionTop + 'px';
+            tieFighter.style.top = Math.random() * 600 + 'px';
             tieFighter.style.left = gameScreen.offsetWidth - initialState.width + 'px';
 
             this.tieFighter = tieFighter;
