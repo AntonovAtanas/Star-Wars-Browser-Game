@@ -44,6 +44,6 @@ function falconMovement(){
     };
 
     if (state.keys['Space']){
-        game.createFalconLaser(state.falconLaser);
+        game.createFalconLaser(state);
     }
 }

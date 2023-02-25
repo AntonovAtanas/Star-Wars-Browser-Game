@@ -36,11 +36,11 @@ function initGameObjects() {
             let laser = document.createElement('div');
             laser.classList.add('falcon-laser');
 
-            laser.style.height = initialState.height + 'px';
-            laser.style.width = initialState.width + 'px';
+            laser.style.height = initialState.falconLaser.height + 'px';
+            laser.style.width = initialState.falconLaser.width + 'px';
 
-            laser.style.top = 32 + 'px';
-            laser.style.left = 50 + 'px';
+            laser.style.top = (initialState.milleniumFalcon.positionTop + initialState.milleniumFalcon.height / 2 - 12) + 'px';
+            laser.style.left = (initialState.milleniumFalcon.positionLeft + initialState.milleniumFalcon.width - 20) + 'px';
 
             game.gameScreen.appendChild(laser);
             return laser
