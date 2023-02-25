@@ -1,5 +1,6 @@
-let state = initialState();
+
 let game = initGameObjects();
+let state = initialState(game);
 
 // Add event listener on the start button
 game.startBtn.addEventListener('click', startGame);

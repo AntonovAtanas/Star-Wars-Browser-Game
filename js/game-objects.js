@@ -9,7 +9,7 @@ function initGameObjects() {
            let milleniumFalcon = document.createElement('div');
            milleniumFalcon.classList.add('millenium-falcon');
 
-           milleniumFalcon.style.height = + initialState.height + 'px';
+           milleniumFalcon.style.height = initialState.height + 'px';
            milleniumFalcon.style.width = initialState.width + 'px';
            milleniumFalcon.style.top = initialState.positionTop + 'px';
            milleniumFalcon.style.left = initialState.positionLeft + 'px';
@@ -18,6 +18,20 @@ function initGameObjects() {
            game.gameScreen.appendChild(milleniumFalcon);
            return milleniumFalcon;
         },
+        createTieFighter(initialState){
+            let tieFighter = document.createElement('div');
+            tieFighter.classList.add('tie-fighter');
+
+            tieFighter.style.height = initialState.height + 'px';
+            tieFighter.style.width = initialState.width + 'px';
+
+            tieFighter.style.top = initialState.positionTop + 'px';
+            tieFighter.style.left = gameScreen.offsetWidth - initialState.width + 'px';
+
+            this.tieFighter = tieFighter;
+            game.gameScreen.appendChild(tieFighter);
+            return tieFighter
+        }
 
     }
 }
