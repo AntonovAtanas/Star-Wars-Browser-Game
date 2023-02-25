@@ -19,7 +19,7 @@ function initialState (game) {
             positionLeft: 0,
             positionRight: 0,
             positionDown: 0,
-            speed: 4,
+            speed: 3,
             spawnTimestamp: 0,
             spawnInterval: 3000
         },
