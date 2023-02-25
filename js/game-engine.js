@@ -5,6 +5,28 @@ function start(state, game) {
 
 function gameLoop(state, game, timestamp) {
     // Movement of the Millenium Falcon
+    falconMovement();
+
+    // Spawn TIE Fighters
+    if (timestamp > state.tieFighter.spawnTimestamp) {
+        game.createTieFighter(state.tieFighter);
+        state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
+    }
+
+    //Rendering
+    game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
+    game.milleniumFalcon.style.bottom = state.milleniumFalcon.positionDown + 'px';
+    game.milleniumFalcon.style.left = state.milleniumFalcon.positionLeft + 'px';
+    game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
+
+    //Moving TIE Fighters
+    let tieFighters = document.querySelectorAll('.tie-fighter')
+    tieFighters.forEach(element => element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px')
+
+    window.requestAnimationFrame(gameLoop.bind(null, state, game));
+};
+
+function falconMovement(){
     if (state.keys['ArrowDown'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
         state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
     };
@@ -20,23 +42,4 @@ function gameLoop(state, game, timestamp) {
     if (state.keys['ArrowLeft'] && state.milleniumFalcon.positionLeft > -7) {
         state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
     };
-
-    // Spawn TIE Fighters
-    if (timestamp > state.tieFighter.spawnTimestamp) {
-        game.createTieFighter(state.tieFighter);
-        state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
-    }
-
-
-    //Rendering
-    game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
-    game.milleniumFalcon.style.bottom = state.milleniumFalcon.positionDown + 'px';
-    game.milleniumFalcon.style.left = state.milleniumFalcon.positionLeft + 'px';
-    game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
-
-    //Moving TIE Fighters
-    let tieFighters = document.querySelectorAll('.tie-fighter')
-    tieFighters.forEach(element => element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px')
-
-    window.requestAnimationFrame(gameLoop.bind(null, state, game));
-};
+}

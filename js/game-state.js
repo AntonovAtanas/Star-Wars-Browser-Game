@@ -21,7 +21,7 @@ function initialState (game) {
             positionDown: 0,
             speed: 3,
             spawnTimestamp: 0,
-            spawnInterval: 3000
+            spawnInterval: 5000
         },
         keys: {
             ArrowUp: false,
