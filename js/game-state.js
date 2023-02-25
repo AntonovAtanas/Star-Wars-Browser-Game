@@ -26,6 +26,7 @@ function initialState (game) {
         falconLaser: {
             height: 13,
             width: 13,
+            speed: 15
         },
         keys: {
             ArrowUp: false,

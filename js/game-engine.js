@@ -20,8 +20,12 @@ function gameLoop(state, game, timestamp) {
     game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
 
     //Moving TIE Fighters
-    let tieFighters = document.querySelectorAll('.tie-fighter')
-    tieFighters.forEach(element => element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px')
+    let tieFighters = document.querySelectorAll('.tie-fighter');
+    tieFighters.forEach(element => element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px');
+
+    //Moving Millenium Falcon laser
+    let lasers = document.querySelectorAll('.falcon-laser');
+    lasers.forEach(element => element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px')
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 };

@@ -30,7 +30,7 @@ function initGameObjects() {
 
             this.tieFighter = tieFighter;
             game.gameScreen.appendChild(tieFighter);
-            return tieFighter
+            return tieFighter;
         },
         createFalconLaser(initialState){
             let laser = document.createElement('div');
@@ -43,7 +43,8 @@ function initGameObjects() {
             laser.style.left = (initialState.milleniumFalcon.positionLeft + initialState.milleniumFalcon.width - 20) + 'px';
 
             game.gameScreen.appendChild(laser);
-            return laser
+            this.laser = laser;
+            return laser;
         }
 
     }
