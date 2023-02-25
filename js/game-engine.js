@@ -1,10 +1,10 @@
 function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
     
-    window.requestAnimationFrame(gameLoop.bind(null, state, game));
+    window.requestAnimationFrame(timestamp => gameLoop(state, game, timestamp));
 }
 
-function gameLoop(state, game) {
+function gameLoop(state, game, timestamp) {
     // Movement of the Millenium Falcon
     if (state.keys['ArrowDown'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
         state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
@@ -23,7 +23,11 @@ function gameLoop(state, game) {
     };
     
     // Spawn TIE Fighters
-    game.createTieFighter(state.tieFighter)
+    if (timestamp > state.tieFighter.spawnTimestamp){
+        game.createTieFighter(state.tieFighter);
+        state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
+    }
+    
     
     //Rendering
     game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
@@ -31,10 +35,7 @@ function gameLoop(state, game) {
     game.milleniumFalcon.style.left = state.milleniumFalcon.positionLeft + 'px';
     game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
 
-    // game.tieFighter.style.top = state.tieFighter.positionTop + 'px';
-    // game.tieFighter.style.bottom = state.tieFighter.positionDown + 'px';
     // game.tieFighter.style.left = state.tieFighter.positionLeft + 'px';
-    // game.tieFighter.style.right = state.tieFighter.positionLeft + 'px';
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 };

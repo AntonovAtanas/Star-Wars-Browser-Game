@@ -20,6 +20,8 @@ function initialState (game) {
             positionRight: 0,
             positionDown: 0,
             speed: 4,
+            spawnTimestamp: 0,
+            spawnInterval: 3000
         },
         keys: {
             ArrowUp: false,
