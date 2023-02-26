@@ -40,7 +40,7 @@ function gameLoop(state, game, timestamp) {
 
     lasers.forEach(element => {
         // remove laser element when out of the screen
-        if (parseInt(element.style.left) + state.falconLaser.width + 5 >= game.gameScreen.offsetWidth) {
+        if (parseInt(element.style.left) + state.falconLaser.width + 8 >= game.gameScreen.offsetWidth) {
             element.remove();
         } else {
             element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
@@ -51,23 +51,23 @@ function gameLoop(state, game, timestamp) {
 };
 
 function falconMovement() {
-    if (state.keys['ArrowDown'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
+    if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
         state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
     };
 
-    if (state.keys['ArrowUp'] && state.milleniumFalcon.positionTop > -12) {
+    if (state.keys['KeyW'] && state.milleniumFalcon.positionTop > -12) {
         state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
     };
 
-    if (state.keys['ArrowRight'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
+    if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
         state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
     };
 
-    if (state.keys['ArrowLeft'] && state.milleniumFalcon.positionLeft > -7) {
+    if (state.keys['KeyA'] && state.milleniumFalcon.positionLeft > -7) {
         state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
     };
 
-    if (state.keys['Space']) {
+    if (state.keys['Enter']) {
         game.createFalconLaser(state);
-    }
+    };
 }

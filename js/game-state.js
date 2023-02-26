@@ -29,10 +29,11 @@ function initialState (game) {
             speed: 15
         },
         keys: {
-            ArrowUp: false,
-            ArrowDown: false,
-            ArrowLeft: false,
-            ArrowRigth: false
+            KeyW: false,
+            KeyS: false,
+            KeyA: false,
+            KeyD: false,
+            Enter: false
         }
     }
     return state;

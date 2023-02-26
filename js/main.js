@@ -8,11 +8,11 @@ game.startBtn.addEventListener('click', startGame);
 // Array of available keys
 
 let availableKeys = [
-    'ArrowUp',
-    'ArrowDown',
-    'ArrowLeft',
-    'ArrowRight',
-    'Space'
+    'KeyW',
+    'KeyS',
+    'KeyA',
+    'KeyD',
+    'Enter'
 ]
 
 // Add event listener on pressed key
