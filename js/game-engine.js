@@ -25,26 +25,32 @@ function gameLoop(state, game, timestamp) {
 
     //Moving TIE Fighters
     let tieFighters = document.querySelectorAll('.tie-fighter');
-    tieFighters.forEach(element => element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px');
+
+    tieFighters.forEach(element => {
+        // remove TIE fighter element when out of the screen
+        if (parseInt(element.style.left) <= 0 - state.tieFighter.width) {
+            element.remove();
+        } else {
+            element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
+        }
+    })
 
     //Moving Millenium Falcon laser
     let lasers = document.querySelectorAll('.falcon-laser');
 
     lasers.forEach(element => {
-        
-        if (parseInt(element.style.left) + state.falconLaser.width + 5 >= game.gameScreen.offsetWidth){
-            // remove laser element when out of the screen
+        // remove laser element when out of the screen
+        if (parseInt(element.style.left) + state.falconLaser.width + 5 >= game.gameScreen.offsetWidth) {
             element.remove();
         } else {
             element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
         }
-        
     })
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 };
 
-function falconMovement(){
+function falconMovement() {
     if (state.keys['ArrowDown'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
         state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
     };
@@ -61,7 +67,7 @@ function falconMovement(){
         state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
     };
 
-    if (state.keys['Space']){
+    if (state.keys['Space']) {
         game.createFalconLaser(state);
     }
 }
