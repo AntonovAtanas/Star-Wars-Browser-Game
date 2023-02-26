@@ -4,6 +4,10 @@ function start(state, game) {
 }
 
 function gameLoop(state, game, timestamp) {
+
+    // Get the gameScreen
+    const gameScreen = document.querySelector('.game-screen');
+
     // Movement of the Millenium Falcon
     falconMovement();
 
@@ -25,7 +29,17 @@ function gameLoop(state, game, timestamp) {
 
     //Moving Millenium Falcon laser
     let lasers = document.querySelectorAll('.falcon-laser');
-    lasers.forEach(element => element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px')
+
+    lasers.forEach(element => {
+        
+        if (parseInt(element.style.left) + state.falconLaser.width + 5 >= game.gameScreen.offsetWidth){
+            // remove laser element when out of the screen
+            element.remove();
+        } else {
+            element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
+        }
+        
+    })
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 };
