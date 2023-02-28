@@ -45,6 +45,13 @@ function gameLoop(state, game, timestamp) {
         } else {
             element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
         }
+
+        tieFighters.forEach(bug => {
+            if (detectCollision(bug, element)){
+                bug.remove();
+                element.remove();
+            }
+        })
     })
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
@@ -70,4 +77,13 @@ function falconMovement() {
     if (state.keys['Enter']) {
         game.createFalconLaser(state);
     };
+};
+
+function detectCollision(elementA, elementB){
+    let firstObj = elementA.getBoundingClientRect();
+    let secondObj = elementB.getBoundingClientRect();
+
+    let hasCollision = !(firstObj.top > secondObj.bottom || firstObj.bottom < secondObj.top || firstObj.right < secondObj.left || firstObj.left > secondObj.right);
+
+    return hasCollision;
 }
