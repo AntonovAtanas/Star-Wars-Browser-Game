@@ -33,6 +33,11 @@ function gameLoop(state, game, timestamp) {
         } else {
             element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
         }
+
+        if (detectCollision(game.milleniumFalcon, element)){
+            state.gameOver = true;
+
+        }
     })
 
     //Moving Millenium Falcon laser
@@ -40,22 +45,25 @@ function gameLoop(state, game, timestamp) {
 
     lasers.forEach(element => {
         // remove laser element when out of the screen
-        if (parseInt(element.style.left) + state.falconLaser.width + 8 >= game.gameScreen.offsetWidth) {
+        if (parseInt(element.style.left) + state.falconLaser.width + 15 >= game.gameScreen.offsetWidth) {
             element.remove();
         } else {
             element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
         }
 
-        tieFighters.forEach(bug => {
-            if (detectCollision(bug, element)){
-                bug.remove();
+        tieFighters.forEach(tie => {
+            if (detectCollision(tie, element)){
+                tie.remove();
                 element.remove();
             }
         })
     })
-
-    window.requestAnimationFrame(gameLoop.bind(null, state, game));
-
+    if (state.gameOver){
+        alert('You have lost')
+    } else {
+        window.requestAnimationFrame(gameLoop.bind(null, state, game));
+    }
+    
     function falconMovement() {
         if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
             state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
@@ -78,12 +86,9 @@ function gameLoop(state, game, timestamp) {
                 game.createFalconLaser(state);
                 state.falconLaser.laserSpawn = timestamp + state.falconLaser.maximumSpawnInterval;
             }
-
         };
     };
 };
-
-
 
 function detectCollision(elementA, elementB){
     let firstObj = elementA.getBoundingClientRect();

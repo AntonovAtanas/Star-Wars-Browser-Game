@@ -36,7 +36,8 @@ function initialState (game) {
             KeyA: false,
             KeyD: false,
             Enter: false
-        }
+        },
+        gameOver: false,
     }
     return state;
 }
