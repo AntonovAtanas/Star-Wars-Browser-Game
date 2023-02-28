@@ -26,7 +26,9 @@ function initialState (game) {
         falconLaser: {
             height: 13,
             width: 13,
-            speed: 15
+            speed: 15,
+            laserSpawn: 0,
+            maximumSpawnInterval: 200
         },
         keys: {
             KeyW: false,

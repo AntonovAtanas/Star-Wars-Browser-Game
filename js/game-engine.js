@@ -55,29 +55,35 @@ function gameLoop(state, game, timestamp) {
     })
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
+
+    function falconMovement() {
+        if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
+            state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
+        };
+    
+        if (state.keys['KeyW'] && state.milleniumFalcon.positionTop > -12) {
+            state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
+        };
+    
+        if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
+            state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
+        };
+    
+        if (state.keys['KeyA'] && state.milleniumFalcon.positionLeft > -7) {
+            state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
+        };
+    
+        if (state.keys['Enter']) {
+            if (timestamp > state.falconLaser.laserSpawn){
+                game.createFalconLaser(state);
+                state.falconLaser.laserSpawn = timestamp + state.falconLaser.maximumSpawnInterval;
+            }
+
+        };
+    };
 };
 
-function falconMovement() {
-    if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
-        state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
-    };
 
-    if (state.keys['KeyW'] && state.milleniumFalcon.positionTop > -12) {
-        state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
-    };
-
-    if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
-        state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
-    };
-
-    if (state.keys['KeyA'] && state.milleniumFalcon.positionLeft > -7) {
-        state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
-    };
-
-    if (state.keys['Enter']) {
-        game.createFalconLaser(state);
-    };
-};
 
 function detectCollision(elementA, elementB){
     let firstObj = elementA.getBoundingClientRect();
