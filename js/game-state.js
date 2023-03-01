@@ -3,8 +3,8 @@ function initialState (game) {
 
     const state = {
         milleniumFalcon: {
-            height: 100,
-            width: 100,
+            height: 106,
+            width: 132,
             positionTop: startPositionTop,
             positionLeft: 0,
             positionRight: 0,
