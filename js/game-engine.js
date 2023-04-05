@@ -1,4 +1,4 @@
-function start(state, game) {
+export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
     window.requestAnimationFrame(timestamp => gameLoop(state, game, timestamp));
 }

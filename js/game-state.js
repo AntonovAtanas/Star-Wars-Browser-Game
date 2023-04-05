@@ -1,4 +1,4 @@
-function initialState (game) {
+export function initialState (game) {
     let startPositionTop = Math.random()*600
 
     const state = {

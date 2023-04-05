@@ -1,6 +1,10 @@
+import { initGameObjects } from './game-objects.js'
+import { initialState } from './game-state.js'
+import { start } from './game-engine.js'
 
-let game = initGameObjects();
-let state = initialState(game);
+
+export let game = initGameObjects();
+export let state = initialState(game);
 
 // Add event listener on the start button
 game.startBtn.addEventListener('click', startGame);

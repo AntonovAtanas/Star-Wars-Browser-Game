@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "name": "star-wars-scrolling-game",
+  "description": "Star wars side scrolling game - Millenium Falcon vs TIE Fighters and the Death Star",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonovAtanas/Star-Wars-Scrolling-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntonovAtanas/Star-Wars-Scrolling-Game/issues"
+  },
+  "homepage": "https://github.com/AntonovAtanas/Star-Wars-Scrolling-Game#readme"
+}

@@ -1,4 +1,7 @@
-function initGameObjects() {
+import { initialState } from "./game-state.js";
+import {game, state} from './main.js'
+
+export function initGameObjects() {
     const startBtn = document.querySelector('.start-screen');
     const gameScreen = document.querySelector('.game-screen');
 
