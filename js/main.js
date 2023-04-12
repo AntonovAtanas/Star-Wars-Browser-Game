@@ -1,6 +1,7 @@
 import { initGameObjects } from './game-objects.js'
-import { initialState, onStart } from './game-state.js'
+import { initialState } from './game-state.js'
 import { start } from './game-engine.js'
+import { onStart } from './utils.js'
 
 export let game
 export let state

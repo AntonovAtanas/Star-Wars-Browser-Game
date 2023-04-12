@@ -18,6 +18,14 @@ body {
     color: white
 }
 
+.end-text {
+    color: #FFE81F;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .start-screen:hover {
     cursor: pointer;
     color: #FFE81F;
@@ -49,6 +57,8 @@ body {
     position: absolute;
     top: 10px;
     left: 40px;
-    color: white;
     font-size: 20px;
+    z-index: 100;
+    border-radius: 5px;
+    background-color: #FFE81F;
 }

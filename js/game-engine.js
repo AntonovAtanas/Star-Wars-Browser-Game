@@ -1,4 +1,5 @@
 import { startGame } from "./main.js";
+import { endScreen } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -62,11 +63,8 @@ function gameLoop(state, game, timestamp) {
         })
     })
     if (state.gameOver){
-        // alert('You have lost')
-        if (confirm('You have lost! Try again?')){
-            startGame();
-        }
-
+        
+        endScreen(state.score)
     } else {
         let score = document.querySelector('.score')
         score.textContent = `Score: ${state.score += state.scorePerFrame}`;

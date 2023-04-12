@@ -1,12 +1,12 @@
 {
   "dependencies": {
+    "lit-html": "^2.7.2",
     "lite-server": "^2.6.1"
   },
   "name": "star-wars-scrolling-game",
   "description": "Star wars side scrolling game - Millenium Falcon vs TIE Fighters and the Death Star",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
