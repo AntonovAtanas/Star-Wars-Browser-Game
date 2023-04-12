@@ -44,3 +44,11 @@ body {
     background-size: cover;
     position: absolute;
 }
+
+.score {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    color: white;
+    font-size: 20px;
+}

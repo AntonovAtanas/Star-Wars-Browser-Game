@@ -38,6 +38,8 @@ export function initialState (game) {
             Enter: false
         },
         gameOver: false,
+        score: 0,
+        scorePerFrame: 1,
     }
     return state;
 }
