@@ -40,6 +40,7 @@ export function initialState (game) {
         gameOver: false,
         score: 0,
         scorePerFrame: 1,
+        killBonus: 1000,
     }
     return state;
 }

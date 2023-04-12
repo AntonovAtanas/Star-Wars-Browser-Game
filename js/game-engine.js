@@ -55,6 +55,7 @@ function gameLoop(state, game, timestamp) {
 
         tieFighters.forEach(tie => {
             if (detectCollision(tie, element)){
+                state.score += state.killBonus;
                 tie.remove();
                 element.remove();
             }
