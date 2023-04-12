@@ -1,13 +1,12 @@
 import { initGameObjects } from './game-objects.js'
-import { initialState } from './game-state.js'
+import { initialState, onStart } from './game-state.js'
 import { start } from './game-engine.js'
 
-
-export let game = initGameObjects();
-export let state = initialState(game);
+export let game
+export let state
 
 // Add event listener on the start button
-game.startBtn.addEventListener('click', startGame);
+document.querySelector('.start-screen').addEventListener('click', startGame);
 
 // Array of available keys
 
@@ -33,9 +32,12 @@ document.addEventListener('keyup', (event) => {
     }
 })
 
-function startGame() {
-    game.startBtn.classList.add('hidden');
-    game.gameScreen.classList.remove('hidden');
+export function startGame() {
+    // game.startBtn.classList.add('hidden');
+    // game.gameScreen.classList.remove('hidden');
+    onStart()
+    game = initGameObjects();
+    state = initialState(game);
 
 
     // Starting the game

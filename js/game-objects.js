@@ -1,27 +1,25 @@
 import { initialState } from "./game-state.js";
-import {game, state} from './main.js'
+import { game, state } from './main.js'
 
 export function initGameObjects() {
-    const startBtn = document.querySelector('.start-screen');
     const gameScreen = document.querySelector('.game-screen');
 
     return {
-        startBtn,
         gameScreen,
-        createMilleniumFalcon (initialState) {
-           let milleniumFalcon = document.createElement('div');
-           milleniumFalcon.classList.add('millenium-falcon');
+        createMilleniumFalcon(initialState) {
+            let milleniumFalcon = document.createElement('div');
+            milleniumFalcon.classList.add('millenium-falcon');
 
-           milleniumFalcon.style.height = initialState.height + 'px';
-           milleniumFalcon.style.width = initialState.width + 'px';
-           milleniumFalcon.style.top = initialState.positionTop + 'px';
-           milleniumFalcon.style.left = initialState.positionLeft + 'px';
-           
-           this.milleniumFalcon = milleniumFalcon;
-           game.gameScreen.appendChild(milleniumFalcon);
-           return milleniumFalcon;
+            milleniumFalcon.style.height = initialState.height + 'px';
+            milleniumFalcon.style.width = initialState.width + 'px';
+            milleniumFalcon.style.top = initialState.positionTop + 'px';
+            milleniumFalcon.style.left = initialState.positionLeft + 'px';
+
+            this.milleniumFalcon = milleniumFalcon;
+            game.gameScreen.appendChild(milleniumFalcon);
+            return milleniumFalcon;
         },
-        createTieFighter(initialState){
+        createTieFighter(initialState) {
             let tieFighter = document.createElement('div');
             tieFighter.classList.add('tie-fighter');
 
@@ -35,7 +33,7 @@ export function initGameObjects() {
             game.gameScreen.appendChild(tieFighter);
             return tieFighter;
         },
-        createFalconLaser(initialState){
+        createFalconLaser(initialState) {
             let laser = document.createElement('div');
             laser.classList.add('falcon-laser');
 

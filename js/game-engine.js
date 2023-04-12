@@ -1,4 +1,4 @@
-let score = document.querySelector('.score')
+import { startGame } from "./main.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -62,8 +62,13 @@ function gameLoop(state, game, timestamp) {
         })
     })
     if (state.gameOver){
-        alert('You have lost')
+        // alert('You have lost')
+        if (confirm('You have lost! Try again?')){
+            startGame();
+        }
+
     } else {
+        let score = document.querySelector('.score')
         score.textContent = `Score: ${state.score += state.scorePerFrame}`;
         window.requestAnimationFrame(gameLoop.bind(null, state, game));
     }

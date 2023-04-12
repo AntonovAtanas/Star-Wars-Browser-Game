@@ -1,3 +1,5 @@
+let mainView = document.querySelector('.game-div');
+
 export function initialState (game) {
     let startPositionTop = Math.random()*600
 
@@ -43,4 +45,15 @@ export function initialState (game) {
         killBonus: 1000,
     }
     return state;
+}
+
+export function onStart(){
+    let gameScreenDiv = document.createElement('div');
+    gameScreenDiv.classList.add('game-screen');
+
+    let scoreSpan = document.createElement('span');
+    scoreSpan.classList.add('score');
+
+    gameScreenDiv.appendChild(scoreSpan);
+    mainView.replaceChildren(gameScreenDiv);
 }
