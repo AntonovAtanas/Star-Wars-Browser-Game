@@ -67,6 +67,13 @@ function gameLoop(state, game, timestamp) {
                 state.score += state.killBonus;
                 tie.remove();
                 element.remove();
+                if (state.tieFighter.spawnInterval > 800){
+                    if (state.tieFighter.speed < 6){
+                        state.tieFighter.speed += 0.25
+                    }
+                    
+                    state.tieFighter.spawnInterval -= 125
+                }
             }
         })
     })
