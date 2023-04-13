@@ -22,6 +22,11 @@ export function onStart() {
     let scoreSpan = document.createElement('span');
     scoreSpan.classList.add('score');
 
+    let livesRemaining = document.createElement('span');
+    livesRemaining.textContent = 'Lives Left: 10'
+    livesRemaining.classList.add('lives');
+
     gameScreenDiv.appendChild(scoreSpan);
+    gameScreenDiv.appendChild(livesRemaining);
     gameDiv.replaceChildren(gameScreenDiv);
 }

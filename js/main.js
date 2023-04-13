@@ -34,12 +34,9 @@ document.addEventListener('keyup', (event) => {
 })
 
 export function startGame() {
-    // game.startBtn.classList.add('hidden');
-    // game.gameScreen.classList.remove('hidden');
     onStart()
     game = initGameObjects();
     state = initialState(game);
-
 
     // Starting the game
     start(state, game);

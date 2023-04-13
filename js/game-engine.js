@@ -8,6 +8,8 @@ export function start(state, game) {
 
 function gameLoop(state, game, timestamp) {
 
+    let lives = document.querySelector('.lives')
+
     // Get the gameScreen
     const gameScreen = document.querySelector('.game-screen');
 
@@ -33,6 +35,12 @@ function gameLoop(state, game, timestamp) {
         // remove TIE fighter element when out of the screen
         if (parseInt(element.style.left) <= 0 - state.tieFighter.width) {
             element.remove();
+            state.lives -= 1;
+            if (state.lives === 0){
+                endScreen(state.score)
+            } else {
+                lives.textContent = `Lives Left: ${state.lives}`
+            }
         } else {
             element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
         }

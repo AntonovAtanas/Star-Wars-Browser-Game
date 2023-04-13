@@ -41,6 +41,7 @@ export function initialState (game) {
         score: 0,
         scorePerFrame: 1,
         killBonus: 1000,
+        lives: 10,
     }
     return state;
 }
