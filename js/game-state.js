@@ -30,6 +30,13 @@ export function initialState (game) {
             laserSpawn: 0,
             maximumSpawnInterval: 200
         },
+        livesBonus: {
+            height: 13,
+            width: 13,
+            speed: 15,
+            spawnInterval: 5000,
+            spawnTimestamp: 10000,
+        },
         keys: {
             KeyW: false,
             KeyS: false,

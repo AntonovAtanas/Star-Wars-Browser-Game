@@ -22,6 +22,13 @@ function gameLoop(state, game, timestamp) {
         state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
     }
 
+    // Spawn of Lives bonus
+
+    if (timestamp > state.livesBonus.spawnTimestamp) {
+        game.createLivesBonus(state.livesBonus);
+        state.livesBonus.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
+    }
+
     //Rendering
     game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
     game.milleniumFalcon.style.bottom = state.milleniumFalcon.positionDown + 'px';
@@ -69,10 +76,10 @@ function gameLoop(state, game, timestamp) {
                 element.remove();
                 if (state.tieFighter.spawnInterval > 800){
                     if (state.tieFighter.speed < 6){
-                        state.tieFighter.speed += 0.25
+                        state.tieFighter.speed += 0.25;
                     }
                     
-                    state.tieFighter.spawnInterval -= 125
+                    state.tieFighter.spawnInterval -= 125;
                 }
             }
         })

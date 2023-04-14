@@ -72,3 +72,9 @@ body {
     border-radius: 5px;
     background-color: #FFE81F;
 }
+
+.lives-bonus {
+    background-image: url("../img/lives-bonus.png");
+    background-size: cover;
+    position: absolute
+}

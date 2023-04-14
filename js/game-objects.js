@@ -33,6 +33,20 @@ export function initGameObjects() {
             game.gameScreen.appendChild(tieFighter);
             return tieFighter;
         },
+        createLivesBonus(initialState){
+            let bonus = document.createElement('div');
+            bonus.classList.add('lives-bonus');
+
+            bonus.style.height = initialState.height + 'px';
+            bonus.style.width = initialState.width + 'px';
+
+            bonus.style.top = Math.random() * 600 + 'px';
+            bonus.style.left = gameScreen.offsetWidth - initialState.width + 'px';
+
+            this.bonus = bonus;
+            game.gameScreen.appendChild(bonus);
+            return bonus
+        },
         createFalconLaser(initialState) {
             let laser = document.createElement('div');
             laser.classList.add('falcon-laser');
