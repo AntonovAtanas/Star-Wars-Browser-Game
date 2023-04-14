@@ -1,5 +1,5 @@
 import { startGame } from "./main.js";
-import { endScreen } from "./utils.js";
+import { endScreen, movingLifeBonus, detectCollision } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -23,11 +23,16 @@ function gameLoop(state, game, timestamp) {
     }
 
     // Spawn of Lives bonus
-
     if (timestamp > state.livesBonus.spawnTimestamp) {
         game.createLivesBonus(state.livesBonus);
         state.livesBonus.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
     }
+
+
+    let lifeBonuses = document.querySelectorAll('.lives-bonus')
+    movingLifeBonus(lifeBonuses, state, game.milleniumFalcon)
+    
+    lives.textContent = `Lives Left: ${state.lives}`
 
     //Rendering
     game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
@@ -45,8 +50,6 @@ function gameLoop(state, game, timestamp) {
             state.lives -= 1;
             if (state.lives === 0){
                 endScreen(state.score)
-            } else {
-                lives.textContent = `Lives Left: ${state.lives}`
             }
         } else {
             element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
@@ -118,12 +121,3 @@ function gameLoop(state, game, timestamp) {
         };
     };
 };
-
-function detectCollision(elementA, elementB){
-    let firstObj = elementA.getBoundingClientRect();
-    let secondObj = elementB.getBoundingClientRect();
-
-    let hasCollision = !(firstObj.top > secondObj.bottom || firstObj.bottom < secondObj.top || firstObj.right < secondObj.left || firstObj.left > secondObj.right);
-
-    return hasCollision;
-}

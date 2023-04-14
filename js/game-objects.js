@@ -34,18 +34,18 @@ export function initGameObjects() {
             return tieFighter;
         },
         createLivesBonus(initialState){
-            let bonus = document.createElement('div');
-            bonus.classList.add('lives-bonus');
+            let lifeBonus = document.createElement('div');
+            lifeBonus.classList.add('lives-bonus');
 
-            bonus.style.height = initialState.height + 'px';
-            bonus.style.width = initialState.width + 'px';
+            lifeBonus.style.height = initialState.height + 'px';
+            lifeBonus.style.width = initialState.width + 'px';
 
-            bonus.style.top = Math.random() * 600 + 'px';
-            bonus.style.left = gameScreen.offsetWidth - initialState.width + 'px';
+            lifeBonus.style.top = Math.random() * 600 + 'px';
+            lifeBonus.style.left = gameScreen.offsetWidth - initialState.width + 'px';
 
-            this.bonus = bonus;
-            game.gameScreen.appendChild(bonus);
-            return bonus
+            this.lifeBonus = lifeBonus;
+            game.gameScreen.appendChild(lifeBonus);
+            return lifeBonus
         },
         createFalconLaser(initialState) {
             let laser = document.createElement('div');

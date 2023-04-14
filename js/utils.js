@@ -1,4 +1,5 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js'
+import { initialState } from './game-state.js';
 import { startGame } from './main.js';
 
 let gameDiv = document.querySelector('.game-div');
@@ -29,4 +30,30 @@ export function onStart() {
     gameScreenDiv.appendChild(scoreSpan);
     gameScreenDiv.appendChild(livesRemaining);
     gameDiv.replaceChildren(gameScreenDiv);
+}
+
+export function movingLifeBonus(lifeBonuses, state, falcon) {
+    lifeBonuses.forEach(bonus => {
+
+        if (parseInt(bonus.style.left) <= 0 - state.livesBonus.width) {
+            bonus.remove();
+        } else {
+            bonus.style.left = parseInt(bonus.style.left) - state.livesBonus.speed + 'px';
+        }
+
+        if (detectCollision(falcon, bonus)){
+            bonus.remove();
+            state.lives += 1;
+            console.log(state.lives)
+        }
+    });
+}
+
+export function detectCollision(elementA, elementB){
+    let firstObj = elementA.getBoundingClientRect();
+    let secondObj = elementB.getBoundingClientRect();
+
+    let hasCollision = !(firstObj.top > secondObj.bottom || firstObj.bottom < secondObj.top || firstObj.right < secondObj.left || firstObj.left > secondObj.right);
+
+    return hasCollision;
 }
