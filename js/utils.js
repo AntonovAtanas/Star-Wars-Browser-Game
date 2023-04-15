@@ -44,9 +44,23 @@ export function movingLifeBonus(lifeBonuses, state, falcon) {
         if (detectCollision(falcon, bonus)){
             bonus.remove();
             state.lives += 1;
-            console.log(state.lives)
         }
     });
+}
+
+export function movingSpeedBonus(speedBonuses, state, falcon){
+    speedBonuses.forEach(bonus => {
+        if (parseInt(bonus.style.left) <= 0 - state.speedBonus.width) {
+            bonus.remove();
+        } else {
+            bonus.style.left = parseInt(bonus.style.left) - state.speedBonus.speed + 'px';
+        }
+
+        if (detectCollision(falcon, bonus)){
+            bonus.remove();
+            state.milleniumFalcon.speed += 1;
+        }
+    })
 }
 
 export function detectCollision(elementA, elementB){

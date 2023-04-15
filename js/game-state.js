@@ -41,8 +41,8 @@ export function initialState (game) {
             height: 13,
             width: 13,
             speed: 12,
-            spawnInterval: 15000,
-            spawnTimestamp: 15000
+            spawnInterval: 20000,
+            spawnTimestamp: 20000
         },
         keys: {
             KeyW: false,

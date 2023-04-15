@@ -1,5 +1,5 @@
 import { startGame } from "./main.js";
-import { endScreen, movingLifeBonus, detectCollision } from "./utils.js";
+import { endScreen, movingLifeBonus, detectCollision, movingSpeedBonus } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -28,7 +28,7 @@ function gameLoop(state, game, timestamp) {
         state.livesBonus.spawnTimestamp = timestamp + Math.random() * state.livesBonus.spawnInterval
     }
 
-    // Moving of the Lives bonuses
+    // Moving of all Lives bonuses
     let lifeBonuses = document.querySelectorAll('.lives-bonus')
     movingLifeBonus(lifeBonuses, state, game.milleniumFalcon)
     
@@ -40,6 +40,11 @@ function gameLoop(state, game, timestamp) {
         game.createSpeedBonus(state.speedBonus);
         state.speedBonus.spawnTimestamp = timestamp + Math.random() * state.speedBonus.spawnInterval
     }
+
+    // Moving of all Speed bonuses
+
+    let speedBonuses = document.querySelectorAll('.speed-bonus');
+    movingSpeedBonus(speedBonuses, state, game.milleniumFalcon)
 
     //Rendering
     game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
