@@ -78,3 +78,9 @@ body {
     background-size: cover;
     position: absolute
 }
+
+.speed-bonus {
+    background-image: url("../img/speed-bonus.png");
+    background-size: cover;
+    position: absolute
+}

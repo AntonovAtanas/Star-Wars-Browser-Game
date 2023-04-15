@@ -47,6 +47,20 @@ export function initGameObjects() {
             game.gameScreen.appendChild(lifeBonus);
             return lifeBonus
         },
+        createSpeedBonus(initialState){
+            let speedBonus = document.createElement('div');
+            speedBonus.classList.add('speed-bonus');
+
+            speedBonus.style.height = initialState.height + 'px';
+            speedBonus.style.width = initialState.width + 'px';
+
+            speedBonus.style.top = Math.random() * 600 + 'px';
+            speedBonus.style.left = gameScreen.offsetWidth - initialState.width + 'px';
+
+            this.speedBonus = speedBonus;
+            game.gameScreen.appendChild(speedBonus);
+            return speedBonus;
+        },
         createFalconLaser(initialState) {
             let laser = document.createElement('div');
             laser.classList.add('falcon-laser');

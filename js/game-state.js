@@ -33,9 +33,16 @@ export function initialState (game) {
         livesBonus: {
             height: 13,
             width: 13,
-            speed: 15,
-            spawnInterval: 5000,
-            spawnTimestamp: 10000,
+            speed: 12,
+            spawnInterval: 15000,
+            spawnTimestamp: 15000,
+        },
+        speedBonus: {
+            height: 13,
+            width: 13,
+            speed: 12,
+            spawnInterval: 15000,
+            spawnTimestamp: 15000
         },
         keys: {
             KeyW: false,
