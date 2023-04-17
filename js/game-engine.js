@@ -31,7 +31,7 @@ function gameLoop(state, game, timestamp) {
     // Moving of all Lives bonuses
     let lifeBonuses = document.querySelectorAll('.lives-bonus')
     movingLifeBonus(lifeBonuses, state, game.milleniumFalcon)
-    
+
     lives.textContent = `Lives Left: ${state.lives}`
 
     // Spawn of the Speed bonus
@@ -60,16 +60,15 @@ function gameLoop(state, game, timestamp) {
         if (parseInt(element.style.left) <= 0 - state.tieFighter.width) {
             element.remove();
             state.lives -= 1;
-            if (state.lives === 0){
+            if (state.lives === 0) {
                 endScreen(state.score)
             }
         } else {
             element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
         }
 
-        if (detectCollision(game.milleniumFalcon, element)){
-            state.gameOver = true;
-
+        if (detectCollision(game.milleniumFalcon, element)) {
+            endScreen(state.score)
         }
     })
 
@@ -85,48 +84,45 @@ function gameLoop(state, game, timestamp) {
         }
 
         tieFighters.forEach(tie => {
-            if (detectCollision(tie, element)){
+            if (detectCollision(tie, element)) {
                 state.score += state.killBonus;
                 tie.remove();
                 element.remove();
-                if (state.tieFighter.spawnInterval > 800){
-                    if (state.tieFighter.speed < 6){
+                if (state.tieFighter.spawnInterval > 800) {
+                    if (state.tieFighter.speed < 6) {
                         state.tieFighter.speed += 0.25;
                     }
-                    
+
                     state.tieFighter.spawnInterval -= 125;
                 }
             }
         })
     })
-    if (state.gameOver){
-        
-        endScreen(state.score)
-    } else {
-        let score = document.querySelector('.score')
-        score.textContent = `Score: ${state.score += state.scorePerFrame}`;
-        window.requestAnimationFrame(gameLoop.bind(null, state, game));
-    }
-    
+
+    let score = document.querySelector('.score')
+    score.textContent = `Score: ${state.score += state.scorePerFrame}`;
+    window.requestAnimationFrame(gameLoop.bind(null, state, game));
+
+
     function falconMovement() {
         if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
             state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
         };
-    
+
         if (state.keys['KeyW'] && state.milleniumFalcon.positionTop > -12) {
             state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
         };
-    
+
         if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
             state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
         };
-    
+
         if (state.keys['KeyA'] && state.milleniumFalcon.positionLeft > -7) {
             state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
         };
-    
+
         if (state.keys['Enter']) {
-            if (timestamp > state.falconLaser.laserSpawn){
+            if (timestamp > state.falconLaser.laserSpawn) {
                 game.createFalconLaser(state);
                 state.falconLaser.laserSpawn = timestamp + state.falconLaser.maximumSpawnInterval;
             }
