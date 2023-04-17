@@ -78,3 +78,5 @@ export function initGameObjects() {
 
     }
 }
+
+//// idea!! stop spawning TIE fighters after 100 000 points and then spawn the Death Star which goes up and down and shoots
