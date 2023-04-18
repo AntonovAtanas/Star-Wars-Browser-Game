@@ -15,41 +15,38 @@ function gameLoop(state, game, timestamp) {
     // Movement of the Millenium Falcon
     falconMovement(state, timestamp, game)
 
-    // Spawn TIE Fighters
-    if (timestamp > state.tieFighter.spawnTimestamp) {
-        game.createTieFighter(state.tieFighter);
-        state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
-    }
+    if (state.score <= state.deathStarSpawn) {
+        // Spawn TIE Fighters
+        if (timestamp > state.tieFighter.spawnTimestamp) {
+            game.createTieFighter(state.tieFighter);
+            state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
+        }
 
-    // Spawn of Lives bonus
-    if (timestamp > state.livesBonus.spawnTimestamp) {
-        game.createLivesBonus(state.livesBonus);
-        state.livesBonus.spawnTimestamp = timestamp + Math.random() * state.livesBonus.spawnInterval
+        // Spawn of Lives bonus
+        if (timestamp > state.livesBonus.spawnTimestamp) {
+            game.createLivesBonus(state.livesBonus);
+            state.livesBonus.spawnTimestamp = timestamp + Math.random() * state.livesBonus.spawnInterval
+        }
+
+        // Spawn of the Speed bonus
+
+        if (timestamp > state.speedBonus.spawnTimestamp) {
+            game.createSpeedBonus(state.speedBonus);
+            state.speedBonus.spawnTimestamp = timestamp + Math.random() * state.speedBonus.spawnInterval
+        }
+    } else if(state.score > state.deathStarSpawn && state.isDeathStarSpawned == false){
+        state.isDeathStarSpawned == true;
+        // spawn death star
     }
 
     // Moving of all Lives bonuses
     let lifeBonuses = document.querySelectorAll('.lives-bonus')
     movingLifeBonus(lifeBonuses, state, game.milleniumFalcon)
 
-    lives.textContent = `Lives Left: ${state.lives}`
-
-    // Spawn of the Speed bonus
-
-    if (timestamp > state.speedBonus.spawnTimestamp) {
-        game.createSpeedBonus(state.speedBonus);
-        state.speedBonus.spawnTimestamp = timestamp + Math.random() * state.speedBonus.spawnInterval
-    }
-
     // Moving of all Speed bonuses
 
     let speedBonuses = document.querySelectorAll('.speed-bonus');
     movingSpeedBonus(speedBonuses, state, game.milleniumFalcon)
-
-    //Rendering
-    game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
-    game.milleniumFalcon.style.bottom = state.milleniumFalcon.positionDown + 'px';
-    game.milleniumFalcon.style.left = state.milleniumFalcon.positionLeft + 'px';
-    game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
 
     //Moving TIE Fighters
     let tieFighters = document.querySelectorAll('.tie-fighter');
@@ -60,6 +57,17 @@ function gameLoop(state, game, timestamp) {
     let lasers = document.querySelectorAll('.falcon-laser');
 
     movingFalconLaser(lasers, state, tieFighters, game)
+
+    lives.textContent = `Lives Left: ${state.lives}`;
+
+    //Rendering
+    game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
+    game.milleniumFalcon.style.bottom = state.milleniumFalcon.positionDown + 'px';
+    game.milleniumFalcon.style.left = state.milleniumFalcon.positionLeft + 'px';
+    game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
+
+
+
 
     let score = document.querySelector('.score')
     score.textContent = `Score: ${state.score += state.scorePerFrame}`;

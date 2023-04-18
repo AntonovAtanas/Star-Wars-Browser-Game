@@ -56,6 +56,8 @@ export function initialState (game) {
         scorePerFrame: 1,
         killBonus: 1000,
         lives: 10,
+        deathStarSpawn: 50000,
+        isDeathStarSpawned: false
     }
     return state;
 }
