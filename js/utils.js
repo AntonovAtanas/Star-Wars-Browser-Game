@@ -108,6 +108,31 @@ export function movingFalconLaser(lasers, state, tieFighters, game){
     })
 }
 
+export function falconMovement(state, timestamp, game){
+    if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
+        state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
+    };
+
+    if (state.keys['KeyW'] && state.milleniumFalcon.positionTop > -12) {
+        state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
+    };
+
+    if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
+        state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
+    };
+
+    if (state.keys['KeyA'] && state.milleniumFalcon.positionLeft > -7) {
+        state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
+    };
+
+    if (state.keys['Enter']) {
+        if (timestamp > state.falconLaser.laserSpawn) {
+            game.createFalconLaser(state);
+            state.falconLaser.laserSpawn = timestamp + state.falconLaser.maximumSpawnInterval;
+        }
+    };
+};
+
 export function detectCollision(elementA, elementB){
     let firstObj = elementA.getBoundingClientRect();
     let secondObj = elementB.getBoundingClientRect();

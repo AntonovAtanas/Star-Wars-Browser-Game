@@ -1,5 +1,4 @@
-import { startGame } from "./main.js";
-import { endScreen, movingLifeBonus, detectCollision, movingSpeedBonus, movingTieFighters, movingFalconLaser } from "./utils.js";
+import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -14,7 +13,7 @@ function gameLoop(state, game, timestamp) {
     const gameScreen = document.querySelector('.game-screen');
 
     // Movement of the Millenium Falcon
-    falconMovement();
+    falconMovement(state, timestamp, game)
 
     // Spawn TIE Fighters
     if (timestamp > state.tieFighter.spawnTimestamp) {
@@ -54,7 +53,7 @@ function gameLoop(state, game, timestamp) {
 
     //Moving TIE Fighters
     let tieFighters = document.querySelectorAll('.tie-fighter');
-    
+
     movingTieFighters(tieFighters, state, game.milleniumFalcon);
 
     //Moving Millenium Falcon laser
@@ -65,30 +64,4 @@ function gameLoop(state, game, timestamp) {
     let score = document.querySelector('.score')
     score.textContent = `Score: ${state.score += state.scorePerFrame}`;
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
-
-
-    function falconMovement() {
-        if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
-            state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
-        };
-
-        if (state.keys['KeyW'] && state.milleniumFalcon.positionTop > -12) {
-            state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
-        };
-
-        if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
-            state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
-        };
-
-        if (state.keys['KeyA'] && state.milleniumFalcon.positionLeft > -7) {
-            state.milleniumFalcon.positionLeft -= state.milleniumFalcon.speed;
-        };
-
-        if (state.keys['Enter']) {
-            if (timestamp > state.falconLaser.laserSpawn) {
-                game.createFalconLaser(state);
-                state.falconLaser.laserSpawn = timestamp + state.falconLaser.maximumSpawnInterval;
-            }
-        };
-    };
 };

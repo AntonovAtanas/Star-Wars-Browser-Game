@@ -1,5 +1,4 @@
-import { initialState } from "./game-state.js";
-import { game, state } from './main.js'
+import { game } from './main.js'
 
 export function initGameObjects() {
     const gameScreen = document.querySelector('.game-screen');
