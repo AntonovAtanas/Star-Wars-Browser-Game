@@ -1,5 +1,5 @@
 import { startGame } from "./main.js";
-import { endScreen, movingLifeBonus, detectCollision, movingSpeedBonus } from "./utils.js";
+import { endScreen, movingLifeBonus, detectCollision, movingSpeedBonus, movingTieFighters, movingFalconLaser } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -54,50 +54,13 @@ function gameLoop(state, game, timestamp) {
 
     //Moving TIE Fighters
     let tieFighters = document.querySelectorAll('.tie-fighter');
-
-    tieFighters.forEach(element => {
-        // remove TIE fighter element when out of the screen
-        if (parseInt(element.style.left) <= 0 - state.tieFighter.width) {
-            element.remove();
-            state.lives -= 1;
-            if (state.lives === 0) {
-                endScreen(state.score)
-            }
-        } else {
-            element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
-        }
-
-        if (detectCollision(game.milleniumFalcon, element)) {
-            endScreen(state.score)
-        }
-    })
+    
+    movingTieFighters(tieFighters, state, game.milleniumFalcon);
 
     //Moving Millenium Falcon laser
     let lasers = document.querySelectorAll('.falcon-laser');
 
-    lasers.forEach(element => {
-        // remove laser element when out of the screen
-        if (parseInt(element.style.left) + state.falconLaser.width + 15 >= game.gameScreen.offsetWidth) {
-            element.remove();
-        } else {
-            element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
-        }
-
-        tieFighters.forEach(tie => {
-            if (detectCollision(tie, element)) {
-                state.score += state.killBonus;
-                tie.remove();
-                element.remove();
-                if (state.tieFighter.spawnInterval > 800) {
-                    if (state.tieFighter.speed < 6) {
-                        state.tieFighter.speed += 0.25;
-                    }
-
-                    state.tieFighter.spawnInterval -= 125;
-                }
-            }
-        })
-    })
+    movingFalconLaser(lasers, state, tieFighters, game)
 
     let score = document.querySelector('.score')
     score.textContent = `Score: ${state.score += state.scorePerFrame}`;

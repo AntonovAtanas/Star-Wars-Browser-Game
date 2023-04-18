@@ -48,6 +48,25 @@ export function movingLifeBonus(lifeBonuses, state, falcon) {
     });
 }
 
+export function movingTieFighters(tieFighters, state, falcon){
+    tieFighters.forEach(element => {
+        // remove TIE fighter element when out of the screen
+        if (parseInt(element.style.left) <= 0 - state.tieFighter.width) {
+            element.remove();
+            state.lives -= 1;
+            if (state.lives === 0) {
+                endScreen(state.score)
+            }
+        } else {
+            element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
+        }
+
+        if (detectCollision(falcon, element)) {
+            endScreen(state.score)
+        }
+    })
+}
+
 export function movingSpeedBonus(speedBonuses, state, falcon){
     speedBonuses.forEach(bonus => {
         if (parseInt(bonus.style.left) <= 0 - state.speedBonus.width) {
@@ -60,6 +79,32 @@ export function movingSpeedBonus(speedBonuses, state, falcon){
             bonus.remove();
             state.milleniumFalcon.speed += 1;
         }
+    })
+}
+
+export function movingFalconLaser(lasers, state, tieFighters, game){
+    lasers.forEach(element => {
+        // remove laser element when out of the screen
+        if (parseInt(element.style.left) + state.falconLaser.width + 15 >= game.gameScreen.offsetWidth) {
+            element.remove();
+        } else {
+            element.style.left = parseInt(element.style.left) + state.falconLaser.speed + 'px';
+        }
+
+        tieFighters.forEach(tie => {
+            if (detectCollision(tie, element)) {
+                state.score += state.killBonus;
+                tie.remove();
+                element.remove();
+                if (state.tieFighter.spawnInterval > 800) {
+                    if (state.tieFighter.speed < 6) {
+                        state.tieFighter.speed += 0.25;
+                    }
+
+                    state.tieFighter.spawnInterval -= 125;
+                }
+            }
+        })
     })
 }
 
