@@ -32,6 +32,21 @@ export function initGameObjects() {
             game.gameScreen.appendChild(tieFighter);
             return tieFighter;
         },
+        createDeathStar(initialState){
+            let deathStar = document.createElement('div');
+            deathStar.classList.add('death-star');
+
+            deathStar.style.height = initialState.height + 'px';
+            deathStar.style.width = initialState.width + 'px';
+
+            deathStar.style.top = Math.random() * 600 + 'px';
+            deathStar.style.left = gameScreen.offsetWidth - initialState.width + 'px';
+
+            this.deathStar = deathStar;
+            game.gameScreen.appendChild(deathStar);
+
+            return deathStar;
+        },
         createLivesBonus(initialState){
             let lifeBonus = document.createElement('div');
             lifeBonus.classList.add('lives-bonus');
@@ -77,5 +92,3 @@ export function initGameObjects() {
 
     }
 }
-
-//// idea!! stop spawning TIE fighters after 100 000 points and then spawn the Death Star which goes up and down and shoots

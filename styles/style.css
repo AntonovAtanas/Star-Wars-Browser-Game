@@ -41,6 +41,12 @@ body {
     position: absolute;
 }
 
+.death-star {
+    background-image: url("../img/death-star-iconW.png");
+    background-size: cover;
+    position:absolute;
+}
+
 .tie-fighter {
     background-image: url("../img/tie-fighterW.png");
     background-size: cover;

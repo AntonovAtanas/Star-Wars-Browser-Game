@@ -23,6 +23,16 @@ export function initialState (game) {
             spawnTimestamp: 0,
             spawnInterval: 5000
         },
+        deathStar: {
+            height: 128,
+            width: 128,
+            positionTop: 0,
+            positionLeft: 0,
+            positionRight: 0,
+            positionDown: 0,
+            speed: 3,
+            moveDown: false
+        },
         falconLaser: {
             height: 13,
             width: 13,
@@ -56,7 +66,7 @@ export function initialState (game) {
         scorePerFrame: 1,
         killBonus: 1000,
         lives: 10,
-        deathStarSpawn: 50000,
+        deathStarSpawn: 5000,
         isDeathStarSpawned: false
     }
     return state;

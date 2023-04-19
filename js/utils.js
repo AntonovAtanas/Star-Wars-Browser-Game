@@ -41,14 +41,14 @@ export function movingLifeBonus(lifeBonuses, state, falcon) {
             bonus.style.left = parseInt(bonus.style.left) - state.livesBonus.speed + 'px';
         }
 
-        if (detectCollision(falcon, bonus)){
+        if (detectCollision(falcon, bonus)) {
             bonus.remove();
             state.lives += 1;
         }
     });
 }
 
-export function movingTieFighters(tieFighters, state, falcon){
+export function movingTieFighters(tieFighters, state, falcon) {
     tieFighters.forEach(element => {
         // remove TIE fighter element when out of the screen
         if (parseInt(element.style.left) <= 0 - state.tieFighter.width) {
@@ -67,7 +67,7 @@ export function movingTieFighters(tieFighters, state, falcon){
     })
 }
 
-export function movingSpeedBonus(speedBonuses, state, falcon){
+export function movingSpeedBonus(speedBonuses, state, falcon) {
     speedBonuses.forEach(bonus => {
         if (parseInt(bonus.style.left) <= 0 - state.speedBonus.width) {
             bonus.remove();
@@ -75,14 +75,30 @@ export function movingSpeedBonus(speedBonuses, state, falcon){
             bonus.style.left = parseInt(bonus.style.left) - state.speedBonus.speed + 'px';
         }
 
-        if (detectCollision(falcon, bonus)){
+        if (detectCollision(falcon, bonus)) {
             bonus.remove();
             state.milleniumFalcon.speed += 1;
         }
     })
 }
 
-export function movingFalconLaser(lasers, state, tieFighters, game){
+export function movingDeathStar(deathStar, state, lasers) {
+    if (state.deathStar.moveDown == true) {
+        deathStar.style.top = parseInt(deathStar.style.top) + state.deathStar.speed + 'px';
+    } else {
+        deathStar.style.top = parseInt(deathStar.style.top) - state.deathStar.speed + 'px';
+    }
+
+    if (parseInt(deathStar.style.top) <= 0) {
+        state.deathStar.moveDown = true
+    }
+
+    if (parseInt(deathStar.style.top) + state.deathStar.width + 15 >= gameDiv.offsetHeight) {
+        state.deathStar.moveDown = false
+    }
+}
+
+export function movingFalconLaser(lasers, state, tieFighters, game) {
     lasers.forEach(element => {
         // remove laser element when out of the screen
         if (parseInt(element.style.left) + state.falconLaser.width + 15 >= game.gameScreen.offsetWidth) {
@@ -108,7 +124,7 @@ export function movingFalconLaser(lasers, state, tieFighters, game){
     })
 }
 
-export function falconMovement(state, timestamp, game){
+export function falconMovement(state, timestamp, game) {
     if (state.keys['KeyS'] && state.milleniumFalcon.positionTop < document.querySelector('.game-div').offsetHeight - state.milleniumFalcon.height - 5) {
         state.milleniumFalcon.positionTop += state.milleniumFalcon.speed;
     };
@@ -133,7 +149,7 @@ export function falconMovement(state, timestamp, game){
     };
 };
 
-export function detectCollision(elementA, elementB){
+export function detectCollision(elementA, elementB) {
     let firstObj = elementA.getBoundingClientRect();
     let secondObj = elementB.getBoundingClientRect();
 

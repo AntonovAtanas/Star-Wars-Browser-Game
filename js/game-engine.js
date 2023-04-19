@@ -1,4 +1,4 @@
-import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement } from "./utils.js";
+import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -35,8 +35,9 @@ function gameLoop(state, game, timestamp) {
             state.speedBonus.spawnTimestamp = timestamp + Math.random() * state.speedBonus.spawnInterval
         }
     } else if(state.score > state.deathStarSpawn && state.isDeathStarSpawned == false){
-        state.isDeathStarSpawned == true;
-        // spawn death star
+        // Spawn Death Star
+        state.isDeathStarSpawned = true;
+        game.createDeathStar(state.deathStar);
     }
 
     // Moving of all Lives bonuses
@@ -50,13 +51,17 @@ function gameLoop(state, game, timestamp) {
 
     //Moving TIE Fighters
     let tieFighters = document.querySelectorAll('.tie-fighter');
-
     movingTieFighters(tieFighters, state, game.milleniumFalcon);
 
     //Moving Millenium Falcon laser
     let lasers = document.querySelectorAll('.falcon-laser');
-
     movingFalconLaser(lasers, state, tieFighters, game)
+
+    //Moving Death Star
+    let deathStar = document.querySelector('.death-star');
+    if (deathStar){
+        movingDeathStar(deathStar, state, lasers, gameScreen)
+    }
 
     lives.textContent = `Lives Left: ${state.lives}`;
 
@@ -65,9 +70,6 @@ function gameLoop(state, game, timestamp) {
     game.milleniumFalcon.style.bottom = state.milleniumFalcon.positionDown + 'px';
     game.milleniumFalcon.style.left = state.milleniumFalcon.positionLeft + 'px';
     game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
-
-
-
 
     let score = document.querySelector('.score')
     score.textContent = `Score: ${state.score += state.scorePerFrame}`;
