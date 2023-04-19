@@ -60,7 +60,7 @@ function gameLoop(state, game, timestamp) {
     //Moving Death Star
     let deathStar = document.querySelector('.death-star');
     if (deathStar){
-        movingDeathStar(deathStar, state, lasers, gameScreen)
+        movingDeathStar(deathStar, state, lasers, game.milleniumFalcon)
     }
 
     lives.textContent = `Lives Left: ${state.lives}`;

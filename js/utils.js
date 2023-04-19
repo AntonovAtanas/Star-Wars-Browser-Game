@@ -82,7 +82,7 @@ export function movingSpeedBonus(speedBonuses, state, falcon) {
     })
 }
 
-export function movingDeathStar(deathStar, state, lasers) {
+export function movingDeathStar(deathStar, state, lasers, falcon) {
     if (state.deathStar.moveDown == true) {
         deathStar.style.top = parseInt(deathStar.style.top) + state.deathStar.speed + 'px';
     } else {
@@ -90,11 +90,21 @@ export function movingDeathStar(deathStar, state, lasers) {
     }
 
     if (parseInt(deathStar.style.top) <= 0) {
-        state.deathStar.moveDown = true
+        state.deathStar.moveDown = true;
     }
 
     if (parseInt(deathStar.style.top) + state.deathStar.width + 15 >= gameDiv.offsetHeight) {
-        state.deathStar.moveDown = false
+        state.deathStar.moveDown = false;
+    }
+
+    lasers.forEach(laser => {
+        if(detectCollision(deathStar, laser)){
+            // TODO logic when hit 
+        }
+    })
+
+    if (detectCollision(deathStar, falcon)){
+        endScreen(state.score);
     }
 }
 
