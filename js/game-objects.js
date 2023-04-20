@@ -47,6 +47,20 @@ export function initGameObjects() {
 
             return deathStar;
         },
+        createDeathStarLaser(initialState, deathStar){
+            let deathStarLaser = document.createElement('div');
+            deathStarLaser.classList.add('death-star-laser');
+
+            deathStarLaser.style.height = initialState.deathStarLaser.height + 'px';
+            deathStarLaser.style.width = initialState.deathStarLaser.width + 'px';
+
+            deathStarLaser.style.top = (parseInt(deathStar.style.top) + initialState.deathStar.height / 2 - 12) + 'px';
+            deathStarLaser.style.left = (parseInt(deathStar.style.left) - 20) + 'px';
+
+            game.gameScreen.appendChild(deathStarLaser);
+            this.deathStarLaser = deathStarLaser;
+            return deathStarLaser;
+        },
         createLivesBonus(initialState){
             let lifeBonus = document.createElement('div');
             lifeBonus.classList.add('lives-bonus');

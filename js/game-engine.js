@@ -29,12 +29,11 @@ function gameLoop(state, game, timestamp) {
         }
 
         // Spawn of the Speed bonus
-
         if (timestamp > state.speedBonus.spawnTimestamp) {
             game.createSpeedBonus(state.speedBonus);
             state.speedBonus.spawnTimestamp = timestamp + Math.random() * state.speedBonus.spawnInterval
         }
-    } else if(state.score > state.deathStarSpawn && state.isDeathStarSpawned == false){
+    } else if (state.score > state.deathStarSpawn && state.isDeathStarSpawned == false) {
         // Spawn Death Star
         state.isDeathStarSpawned = true;
         game.createDeathStar(state.deathStar);
@@ -45,7 +44,6 @@ function gameLoop(state, game, timestamp) {
     movingLifeBonus(lifeBonuses, state, game.milleniumFalcon)
 
     // Moving of all Speed bonuses
-
     let speedBonuses = document.querySelectorAll('.speed-bonus');
     movingSpeedBonus(speedBonuses, state, game.milleniumFalcon)
 
@@ -59,8 +57,13 @@ function gameLoop(state, game, timestamp) {
 
     //Moving Death Star
     let deathStar = document.querySelector('.death-star');
-    if (deathStar){
-        movingDeathStar(deathStar, state, lasers, game.milleniumFalcon)
+    if (deathStar) {
+        movingDeathStar(deathStar, state, lasers, game.milleniumFalcon);
+        if (timestamp > state.deathStarLaser.spawnTimeStamp) {
+           
+            game.createDeathStarLaser(state, deathStar);
+            state.deathStarLaser.spawnTimeStamp = timestamp + Math.random() * state.deathStarLaser.spawnInterval;
+        }
     }
 
     lives.textContent = `Lives Left: ${state.lives}`;

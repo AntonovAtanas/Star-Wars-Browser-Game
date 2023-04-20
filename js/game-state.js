@@ -33,6 +33,13 @@ export function initialState (game) {
             speed: 3,
             moveDown: false
         },
+        deathStarLaser: {
+            height: 13,
+            width: 13,
+            speed: 15,
+            spawnTimeStamp: 0,
+            spawnInterval: 5000,
+        },
         falconLaser: {
             height: 13,
             width: 13,

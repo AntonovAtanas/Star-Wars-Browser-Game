@@ -90,3 +90,9 @@ body {
     background-size: cover;
     position: absolute
 }
+
+.death-star-laser {
+    background-image: url("../img/red-laser.png");
+    background-size: cover;
+    position: absolute
+}
