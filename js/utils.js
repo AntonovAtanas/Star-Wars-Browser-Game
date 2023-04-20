@@ -108,6 +108,21 @@ export function movingDeathStar(deathStar, state, lasers, falcon) {
     }
 }
 
+export function movingDeathStarLasers(deathStarLasers, state, falcon){
+    deathStarLasers.forEach(laser => {
+        // Remove laser when out of the screen
+        if (parseInt(laser.style.left) <= 0 - state.deathStarLaser.width) {
+            laser.remove();
+        } else {
+            laser.style.left = parseInt(laser.style.left) - state.deathStarLaser.speed + 'px';
+        }
+
+        if (detectCollision(falcon, laser)) {
+            endScreen(state.score)
+        }
+    })
+}
+
 export function movingFalconLaser(lasers, state, tieFighters, game) {
     lasers.forEach(element => {
         // remove laser element when out of the screen

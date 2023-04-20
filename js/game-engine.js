@@ -1,4 +1,4 @@
-import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar } from "./utils.js";
+import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar, movingDeathStarLasers } from "./utils.js";
 
 export function start(state, game) {
     game.createMilleniumFalcon(state.milleniumFalcon);
@@ -65,6 +65,10 @@ function gameLoop(state, game, timestamp) {
             state.deathStarLaser.spawnTimeStamp = timestamp + Math.random() * state.deathStarLaser.spawnInterval;
         }
     }
+
+    //Moving of the Death Star Lasers
+    let deathStarLasers = document.querySelectorAll('.death-star-laser');
+    movingDeathStarLasers(deathStarLasers, state, game.milleniumFalcon);
 
     lives.textContent = `Lives Left: ${state.lives}`;
 
