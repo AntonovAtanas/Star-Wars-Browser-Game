@@ -1,6 +1,6 @@
 import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar, movingDeathStarLasers, endScreen } from "./utils.js";
 
-let startTimestamp = null;
+let progress = null;
 
 export function start(state, game) {
     
@@ -9,35 +9,36 @@ export function start(state, game) {
 }
 
 function gameLoop(state, game, timestamp) {
-    // if(!startTimestamp){
-    //     startTimestamp = timestamp;
-    // }
+    if(state.startTimestamp == 0){
+        state.startTimestamp = timestamp;
+    }
 
+    progress = timestamp - state.startTimestamp;
 
-    console.log(timestamp)
+    console.log(progress)
     // Get the gameScreen
     const gameScreen = document.querySelector('.game-screen');
 
     // Movement of the Millenium Falcon
-    falconMovement(state, timestamp, game)
+    falconMovement(state, progress, game)
 
     if (state.score <= state.deathStarSpawn) {
         // Spawn TIE Fighters
-        if (timestamp > state.tieFighter.spawnTimestamp) {
+        if (progress > state.tieFighter.spawnTimestamp) {
             game.createTieFighter(state.tieFighter);
-            state.tieFighter.spawnTimestamp = timestamp + Math.random() * state.tieFighter.spawnInterval
+            state.tieFighter.spawnTimestamp = progress + Math.random() * state.tieFighter.spawnInterval
         }
 
         // Spawn of Lives bonus
-        if (timestamp > state.livesBonus.spawnTimestamp) {
+        if (progress > state.livesBonus.spawnTimestamp) {
             game.createLivesBonus(state.livesBonus);
-            state.livesBonus.spawnTimestamp = timestamp + Math.random() * state.livesBonus.spawnInterval
+            state.livesBonus.spawnTimestamp = progress + Math.random() * state.livesBonus.spawnInterval
         }
 
         // Spawn of the Speed bonus
-        if (timestamp > state.speedBonus.spawnTimestamp) {
+        if (progress > state.speedBonus.spawnTimestamp) {
             game.createSpeedBonus(state.speedBonus);
-            state.speedBonus.spawnTimestamp = timestamp + Math.random() * state.speedBonus.spawnInterval
+            state.speedBonus.spawnTimestamp = progress + Math.random() * state.speedBonus.spawnInterval
         }
     } else if (state.score > state.deathStarSpawn && state.isDeathStarSpawned == false) {
         // Spawn Death Star
@@ -57,6 +58,7 @@ function gameLoop(state, game, timestamp) {
     let tieFighters = document.querySelectorAll('.tie-fighter');
     movingTieFighters(tieFighters, state, game.milleniumFalcon);
     if(state.gameOver == true){
+        state.startTimestamp = 0;
         return endScreen(state.score)
     }
 
@@ -69,12 +71,13 @@ function gameLoop(state, game, timestamp) {
     if (deathStar) {
         movingDeathStar(deathStar, state, lasers, game.milleniumFalcon);
         if(state.gameOver == true){
+            state.startTimestamp = 0;
             return endScreen(state.score)
         }
-        if (timestamp > state.deathStarLaser.spawnTimeStamp) {
+        if (progress > state.deathStarLaser.spawnTimeStamp) {
 
             game.createDeathStarLaser(state, deathStar);
-            state.deathStarLaser.spawnTimeStamp = timestamp + Math.random() * state.deathStarLaser.spawnInterval;
+            state.deathStarLaser.spawnTimeStamp = progress + Math.random() * state.deathStarLaser.spawnInterval;
         }
     }
 
@@ -82,6 +85,7 @@ function gameLoop(state, game, timestamp) {
     let deathStarLasers = document.querySelectorAll('.death-star-laser');
     movingDeathStarLasers(deathStarLasers, state, game.milleniumFalcon);
     if(state.gameOver == true){
+        state.startTimestamp = 0;
         return endScreen(state.score)
     }   
 
