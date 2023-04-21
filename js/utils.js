@@ -4,7 +4,7 @@ import { startGame } from './main.js';
 
 let gameDiv = document.querySelector('.game-div');
 
-export function endScreen(score) {
+export function endScreen(score, timestamp) {
     let view = html`
     <div class="end-screen">
         <span class="end-text">Your score: ${score}</span>
@@ -12,8 +12,10 @@ export function endScreen(score) {
     </div>
     `
     let gameScreen = document.querySelector('.game-screen');
-    gameDiv.removeChild(gameScreen);
-    render(view, gameDiv)
+
+    gameScreen.replaceChildren();
+    render(view, gameScreen)
+    
 }
 
 export function onStart() {
@@ -55,14 +57,14 @@ export function movingTieFighters(tieFighters, state, falcon) {
             element.remove();
             state.lives -= 1;
             if (state.lives === 0) {
-                endScreen(state.score)
+                return state.gameOver = true;
             }
         } else {
             element.style.left = parseInt(element.style.left) - state.tieFighter.speed + 'px';
         }
 
         if (detectCollision(falcon, element)) {
-            endScreen(state.score)
+            return state.gameOver = true;
         }
     })
 }
@@ -98,17 +100,17 @@ export function movingDeathStar(deathStar, state, lasers, falcon) {
     }
 
     lasers.forEach(laser => {
-        if(detectCollision(deathStar, laser)){
+        if (detectCollision(deathStar, laser)) {
             // TODO logic when hit 
         }
     })
 
-    if (detectCollision(deathStar, falcon)){
+    if (detectCollision(deathStar, falcon)) {
         endScreen(state.score);
     }
 }
 
-export function movingDeathStarLasers(deathStarLasers, state, falcon){
+export function movingDeathStarLasers(deathStarLasers, state, falcon) {
     deathStarLasers.forEach(laser => {
         // Remove laser when out of the screen
         if (parseInt(laser.style.left) <= 0 - state.deathStarLaser.width) {
@@ -118,7 +120,7 @@ export function movingDeathStarLasers(deathStarLasers, state, falcon){
         }
 
         if (detectCollision(falcon, laser)) {
-            endScreen(state.score)
+            return state.gameOver = true;
         }
     })
 }

@@ -1,14 +1,20 @@
-import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar, movingDeathStarLasers } from "./utils.js";
+import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar, movingDeathStarLasers, endScreen } from "./utils.js";
+
+let startTimestamp = null;
 
 export function start(state, game) {
+    
     game.createMilleniumFalcon(state.milleniumFalcon);
     window.requestAnimationFrame(timestamp => gameLoop(state, game, timestamp));
 }
 
 function gameLoop(state, game, timestamp) {
+    // if(!startTimestamp){
+    //     startTimestamp = timestamp;
+    // }
 
-    let lives = document.querySelector('.lives')
 
+    console.log(timestamp)
     // Get the gameScreen
     const gameScreen = document.querySelector('.game-screen');
 
@@ -50,6 +56,9 @@ function gameLoop(state, game, timestamp) {
     //Moving TIE Fighters
     let tieFighters = document.querySelectorAll('.tie-fighter');
     movingTieFighters(tieFighters, state, game.milleniumFalcon);
+    if(state.gameOver == true){
+        return endScreen(state.score)
+    }
 
     //Moving Millenium Falcon laser
     let lasers = document.querySelectorAll('.falcon-laser');
@@ -59,8 +68,11 @@ function gameLoop(state, game, timestamp) {
     let deathStar = document.querySelector('.death-star');
     if (deathStar) {
         movingDeathStar(deathStar, state, lasers, game.milleniumFalcon);
+        if(state.gameOver == true){
+            return endScreen(state.score)
+        }
         if (timestamp > state.deathStarLaser.spawnTimeStamp) {
-           
+
             game.createDeathStarLaser(state, deathStar);
             state.deathStarLaser.spawnTimeStamp = timestamp + Math.random() * state.deathStarLaser.spawnInterval;
         }
@@ -69,8 +81,15 @@ function gameLoop(state, game, timestamp) {
     //Moving of the Death Star Lasers
     let deathStarLasers = document.querySelectorAll('.death-star-laser');
     movingDeathStarLasers(deathStarLasers, state, game.milleniumFalcon);
+    if(state.gameOver == true){
+        return endScreen(state.score)
+    }   
 
-    lives.textContent = `Lives Left: ${state.lives}`;
+    let lives = document.querySelector('.lives')
+    if (lives) {
+        lives.textContent = `Lives Left: ${state.lives}`;
+    }
+
 
     //Rendering
     game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
@@ -79,6 +98,10 @@ function gameLoop(state, game, timestamp) {
     game.milleniumFalcon.style.right = state.milleniumFalcon.positionLeft + 'px';
 
     let score = document.querySelector('.score')
-    score.textContent = `Score: ${state.score += state.scorePerFrame}`;
+    
+    if (score) {
+        score.textContent = `Score: ${state.score += state.scorePerFrame}`;
+    }
+
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 };
