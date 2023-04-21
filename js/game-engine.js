@@ -14,8 +14,7 @@ function gameLoop(state, game, timestamp) {
     }
 
     progress = timestamp - state.startTimestamp;
-
-    console.log(progress)
+    
     // Get the gameScreen
     const gameScreen = document.querySelector('.game-screen');
 
