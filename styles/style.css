@@ -12,10 +12,25 @@ body {
 
 .start-screen {
     position: absolute;
-    top: 50%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white
+    color: white;
+    text-align: center;
+}
+
+.first {
+    margin-top: 110px;
+}
+
+.instructions {
+    color: white;
+    font-size: 14px;
+    line-height: 45px;
+}
+
+.highlight {
+    color: #FFE81F;
 }
 
 .end-text {
@@ -26,7 +41,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.start-screen:hover {
+#start-game:hover {
     cursor: pointer;
     color: #FFE81F;
 }
@@ -44,7 +59,7 @@ body {
 .death-star {
     background-image: url("../img/death-star-iconW.png");
     background-size: cover;
-    position:absolute;
+    position: absolute;
 }
 
 .tie-fighter {

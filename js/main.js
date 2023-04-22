@@ -7,7 +7,7 @@ export let game
 export let state
 
 // Add event listener on the start button
-document.querySelector('.start-screen').addEventListener('click', startGame);
+document.getElementById('start-game').addEventListener('click', startGame);
 
 // Array of available keys
 
