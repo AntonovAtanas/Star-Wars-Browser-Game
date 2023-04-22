@@ -7,7 +7,7 @@ export function loseScreen(score) {
     let view = html`
     <div class="end-screen">
         <span class="end-text">Your score: ${score}</span>
-        <div class="start-screen" @click=${startGame}>Try again?</div>
+        <div class="start-screen try-again" @click=${startGame}>Try again?</div>
     </div>
     `
     let gameScreen = document.querySelector('.game-screen');
@@ -16,7 +16,7 @@ export function loseScreen(score) {
     render(view, gameScreen)
 }
 
-export function winScreen(){
+export function winScreen() {
     let view = html`
     <div class="end-screen">
         <span class="end-text">Congratulations! You won!</span>
@@ -130,6 +130,15 @@ export function movingDeathStarLasers(deathStarLasers, state, falcon) {
         } else {
             laser.style.left = parseInt(laser.style.left) - state.deathStarLaser.speed + 'px';
         }
+
+        if (state.score >= 60000) {
+            state.deathStarLaser.speed = 17
+        }
+
+        if (state.score >= 75000) {
+            state.deathStarLaser.spawnInterval = 3000;
+        }
+
 
         if (detectCollision(falcon, laser)) {
             return state.gameOver = true;
