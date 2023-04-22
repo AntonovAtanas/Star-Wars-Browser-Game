@@ -39,9 +39,15 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 #start-game:hover {
+    cursor: pointer;
+    color: #FFE81F;
+}
+
+.try-again:hover {
     cursor: pointer;
     color: #FFE81F;
 }

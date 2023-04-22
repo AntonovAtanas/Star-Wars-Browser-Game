@@ -74,7 +74,7 @@ export function initialState () {
         killBonus: 1000,
         lives: 10,
         deathStarSpawn: 50000,
-        scoreToWin: 100000,
+        scoreToWin: 10000,
         isDeathStarSpawned: false,
         startTimestamp: 0
     }

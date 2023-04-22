@@ -20,7 +20,7 @@ export function winScreen(){
     let view = html`
     <div class="end-screen">
         <span class="end-text">Congratulations! You won!</span>
-        <div class="start-screen" @click=${startGame}>Try again?</div>
+        <div class="start-screen try-again" @click=${startGame}>Try again?</div>
     </div>
     `
     let gameScreen = document.querySelector('.game-screen');
