@@ -1,10 +1,9 @@
 import { html, render } from '../node_modules/lit-html/lit-html.js'
-import { initialState } from './game-state.js';
 import { startGame } from './main.js';
 
 let gameDiv = document.querySelector('.game-div');
 
-export function endScreen(score, timestamp) {
+export function loseScreen(score) {
     let view = html`
     <div class="end-screen">
         <span class="end-text">Your score: ${score}</span>
@@ -15,7 +14,19 @@ export function endScreen(score, timestamp) {
 
     gameScreen.replaceChildren();
     render(view, gameScreen)
-    
+}
+
+export function winScreen(){
+    let view = html`
+    <div class="end-screen">
+        <span class="end-text">Congratulations! You won!</span>
+        <div class="start-screen" @click=${startGame}>Try again?</div>
+    </div>
+    `
+    let gameScreen = document.querySelector('.game-screen');
+
+    gameScreen.replaceChildren();
+    render(view, gameScreen)
 }
 
 export function onStart() {
@@ -101,12 +112,13 @@ export function movingDeathStar(deathStar, state, lasers, falcon) {
 
     lasers.forEach(laser => {
         if (detectCollision(deathStar, laser)) {
-            // TODO logic when hit 
+            laser.remove();
+            state.score += 2000;
         }
     })
 
     if (detectCollision(deathStar, falcon)) {
-        endScreen(state.score);
+        loseScreen(state.score);
     }
 }
 

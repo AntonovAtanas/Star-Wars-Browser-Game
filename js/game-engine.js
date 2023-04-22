@@ -1,9 +1,8 @@
-import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar, movingDeathStarLasers, endScreen } from "./utils.js";
+import { movingLifeBonus, movingSpeedBonus, movingTieFighters, movingFalconLaser, falconMovement, movingDeathStar, movingDeathStarLasers, loseScreen, winScreen } from "./utils.js";
 
 let progress = null;
 
 export function start(state, game) {
-    
     game.createMilleniumFalcon(state.milleniumFalcon);
     window.requestAnimationFrame(timestamp => gameLoop(state, game, timestamp));
 }
@@ -14,7 +13,7 @@ function gameLoop(state, game, timestamp) {
     }
 
     progress = timestamp - state.startTimestamp;
-    
+
     // Get the gameScreen
     const gameScreen = document.querySelector('.game-screen');
 
@@ -58,7 +57,7 @@ function gameLoop(state, game, timestamp) {
     movingTieFighters(tieFighters, state, game.milleniumFalcon);
     if(state.gameOver == true){
         state.startTimestamp = 0;
-        return endScreen(state.score)
+        return loseScreen(state.score)
     }
 
     //Moving Millenium Falcon laser
@@ -71,7 +70,7 @@ function gameLoop(state, game, timestamp) {
         movingDeathStar(deathStar, state, lasers, game.milleniumFalcon);
         if(state.gameOver == true){
             state.startTimestamp = 0;
-            return endScreen(state.score)
+            return loseScreen(state.score)
         }
         if (progress > state.deathStarLaser.spawnTimeStamp) {
 
@@ -85,14 +84,13 @@ function gameLoop(state, game, timestamp) {
     movingDeathStarLasers(deathStarLasers, state, game.milleniumFalcon);
     if(state.gameOver == true){
         state.startTimestamp = 0;
-        return endScreen(state.score)
+        return loseScreen(state.score)
     }   
 
     let lives = document.querySelector('.lives')
     if (lives) {
         lives.textContent = `Lives Left: ${state.lives}`;
     }
-
 
     //Rendering
     game.milleniumFalcon.style.top = state.milleniumFalcon.positionTop + 'px';
@@ -104,6 +102,12 @@ function gameLoop(state, game, timestamp) {
     
     if (score) {
         score.textContent = `Score: ${state.score += state.scorePerFrame}`;
+    }
+
+    // Win screen when 100 000 points reached
+    if(state.score >= state.scoreToWin){
+        state.startTimestamp = 0;
+        return winScreen()
     }
 
     window.requestAnimationFrame(gameLoop.bind(null, state, game));

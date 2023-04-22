@@ -1,4 +1,4 @@
-export function initialState (game) {
+export function initialState () {
     let startPositionTop = Math.random()*600
 
     const state = {
@@ -73,7 +73,8 @@ export function initialState (game) {
         scorePerFrame: 1,
         killBonus: 1000,
         lives: 10,
-        deathStarSpawn: 50000,
+        deathStarSpawn: 5000,
+        scoreToWin: 10000,
         isDeathStarSpawned: false,
         startTimestamp: 0
     }
