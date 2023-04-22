@@ -172,7 +172,7 @@ export function falconMovement(state, timestamp, game) {
         state.milleniumFalcon.positionTop -= state.milleniumFalcon.speed;
     };
 
-    if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 1) {
+    if (state.keys['KeyD'] && state.milleniumFalcon.positionLeft < game.gameScreen.offsetWidth - state.milleniumFalcon.width - 15) {
         state.milleniumFalcon.positionLeft += state.milleniumFalcon.speed
     };
 
