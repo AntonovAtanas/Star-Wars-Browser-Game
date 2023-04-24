@@ -1,5 +1,5 @@
 # Star Wars Browser Game
-Created with HTML, CSS, JS and Lit-Html.
+Created with HTML, CSS, JS and Lit-Html. Deployed on Firebase.
 
 
 ## Live Demo
@@ -11,13 +11,10 @@ Created with HTML, CSS, JS and Lit-Html.
 - This is a side scrolling game where the player needs to reach 100 000 points to win.
 - The player can shoot at the enemies with "Enter" key on the keyboard.
 - The game starts with 10 lives.
-- Random spawning of Blue bonus which gives 1 additional life.
-- Random spawning of Orange bonus which gives additional speed to the player.
+- Blue and orange bonus which provide additional lives or speed.
 - The player has to avoid collision with the TIE Fighters because he will lose the game.
 - Every TIE Fighter reaching the left screen takes away 1 life.
 - At 50 000 points the Death Star is spawning. The player has to avoid being hit by it's lasers.
-- Every hit on a TIE Fighter destroys it and gives 1000 points.
-- Every hit on the Death Star gives 2000 points.
 
 
 
@@ -25,6 +22,16 @@ Created with HTML, CSS, JS and Lit-Html.
   - ` ` `W` ` ` - Press `W` to move UP.
   - `A` `S` `D` - Press `A` to move LEFT, `S` to move DOWN and `D` to move RIGHT.
   - `Enter` - Press `Enter` to shoot.
+
+
+
+## Game Logic
+- The Millenium Falcon is moving based on pressed key which causes its movement on the viewport.
+- TIE Fighters are spawned and removed based on DOM manipulations. Their movement is with predefined pixels to the left which are increasing in time to make the game harder. Every hit TIE Fighter is removed and adds 1000 points to the total score.
+- The player loses 1 life when any TIE Fighter reaches the left screen.
+- The Death Star is spawned when the player reaches 50 000 points. It can shoot lasers which are increasing in time to make it harder. It is also moving up and down. Every hit on the Death Star adds 2000 points to the total score.
+- Randomly the game spawns orange and blue bonuses. The orange bonus makes the Millenium Falcon faster. The blue bonus adds up one life.
+- A method checks every frame if an element collides with another element based on its position on the viewport.
 
 
 
