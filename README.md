@@ -1,2 +1,2 @@
-# star-wars-scrolling-game
-Star wars side scrolling game - Millenium Falcon vs TIE Fighters and the Death Star
+# Star Wars Browser Game
+Created with HTML, CSS, JS and Lit-Html.
